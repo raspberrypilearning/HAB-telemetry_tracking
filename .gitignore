@@ -3,6 +3,7 @@
 
 ### Python ###
 env/
+venv/
 
 ### Emacs ###
 \#*\#
