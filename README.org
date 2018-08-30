@@ -1,0 +1,41 @@
+* HAB unit resource plan
+** Flight unit setup
+1. Attach PITS
+2. Attach LoRA
+3. Raspbian Lite
+4. Attach camera
+** Software setup
+ #+BEGIN_SRC bash
+ sudo apt update && sudo apt upgrade
+ sudo apt install python3-pytrack
+ #+END_SRC
+** rasp-config
+ - Camera to yes
+ - SPI to yes
+ - 1-wire to yes
+ - Serial to no (enable login)
+ - Serial to yes (enable hardware)
+ - restart
+** config.txt
+ - Edit your /boot/config.txt by typing sudo nano /boot/config.txt
+ - Add dtoverlay=pi3-disable-bt to the very bottom of the file to disable bluetooth.
+ - Finally type sudo systemctl disable hciuart.service followed by sudo reboot
+** Enable pigpio daemon
+ #+BEGIN_SRC bash
+ sudo systemctl enable pigpiod.service
+ #+END_SRC
+** Getting gps data
+ #+BEGIN_SRC python
+ from pytrack import GPS
+ from time import sleep
+
+ gps = GPS()
+
+ while True:
+     sleep(1)
+     print(gps.position().time)
+ #+END_SRC
+
+ #+BEGIN_SRC lang
+        
+ #+END_SRC
