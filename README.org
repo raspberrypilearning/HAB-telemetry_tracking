@@ -1,41 +1,86 @@
-* HAB unit resource plan
-** Flight unit setup
-1. Attach PITS
-2. Attach LoRA
-3. Raspbian Lite
-4. Attach camera
-** Software setup
- #+BEGIN_SRC bash
- sudo apt update && sudo apt upgrade
- sudo apt install python3-pytrack
- #+END_SRC
-** rasp-config
- - Camera to yes
- - SPI to yes
- - 1-wire to yes
- - Serial to no (enable login)
- - Serial to yes (enable hardware)
- - restart
-** config.txt
- - Edit your /boot/config.txt by typing sudo nano /boot/config.txt
- - Add dtoverlay=pi3-disable-bt to the very bottom of the file to disable bluetooth.
- - Finally type sudo systemctl disable hciuart.service followed by sudo reboot
-** Enable pigpio daemon
- #+BEGIN_SRC bash
- sudo systemctl enable pigpiod.service
- #+END_SRC
-** Getting gps data
- #+BEGIN_SRC python
- from pytrack import GPS
- from time import sleep
+* Project 1 - GPS resource
+** Technical set_up
+*** Flight unit setup
+ 1. Attach PITS
+ 2. Attach LoRA
+ 3. Raspbian Lite
+ 4. Attach camera
+*** Software setup
+  #+BEGIN_SRC bash
+  sudo apt update && sudo apt upgrade
+  sudo apt install python3-pytrack
+  #+END_SRC
+*** rasp-config
+  - Camera to yes
+  - SPI to yes
+  - 1-wire to yes
+  - Serial to no (enable login)
+  - Serial to yes (enable hardware)
+  - restart
+*** config.txt
+  - Edit your /boot/config.txt by typing sudo nano /boot/config.txt
+  - Add dtoverlay=pi3-disable-bt to the very bottom of the file to disable bluetooth.
+  - Finally type sudo systemctl disable hciuart.service followed by sudo reboot
+*** Enable pigpio daemon
+  #+BEGIN_SRC bash
+  sudo systemctl enable pigpiod.service
+  #+END_SRC
+*** Getting gps data
+  #+BEGIN_SRC python
+  from pytrack import GPS
+  from time import sleep
 
- gps = GPS()
+  gps = GPS()
 
- while True:
-     sleep(1)
-     print(gps.position().time)
- #+END_SRC
+  while True:
+      sleep(1)
+      print(gps.position().time)
+  #+END_SRC
 
- #+BEGIN_SRC lang
+  #+BEGIN_SRC lang
         
- #+END_SRC
+  #+END_SRC
+** Outline
+*** Step 1
+- Intro, what need, what make
+*** Step 2
+- What is GPS - number of sats etc
+- What is lon, lat and alt
+- Task - Identify the landmarks by coordinates
+*** Step 3
+- Assemble Hardware
+*** Step 4
+- Software setup
+*** Step 5
+- Get time data
+*** Step 6
+- Get lon and lat
+*** Step 7
+- Build tracker to create time stamped csv
+*** Step 8 
+- Go for a walk
+*** Step 9
+- Build a visualisation tool
+*** Step 10
+- web viewer for html file.
+*** Challenge
+- Calculate total distance travelled and time taken (fitness tracker)
+* Project 2 - Radio resource
+** Technical set_up
+** Outline
+*** Step 1
+- Same old
+*** Step 2
+- Radio theory
+*** Step 3
+- Hardware setup (build the receiver)
+*** Step 4
+- Software setup
+*** Step 5
+- Send and receive a simple string.
+*** Step 6
+- Checksums
+*** Step 7
+- Send and receive GPS coordinates
+*** Challenge
+- Treasure hunt the Pi game
