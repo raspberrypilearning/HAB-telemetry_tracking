@@ -67,6 +67,29 @@
 - Calculate total distance travelled and time taken (fitness tracker)
 * Project 2 - Radio resource
 ** Technical set_up
+#+BEGIN_SRC bash
+sudo apt update && sudo apt upgrade
+sudo apt install python3-skygate
+#+END_SRC
+- enable SPI in raspiconfig
+- May need to tune upto 5kHz above or below the target
+- the Err says how far you are away from the signal
+** Code
+*** Send a messgae
+#+BEGIN_SRC python
+from pytrack import LoRa
+from time import sleep
+
+## Channel depends on where chip is solderd (CE0 or CE1)
+lora = LoRa(Channel=1, Frequency=434.450, Mode=1)
+
+
+
+while True:
+    lora.send_text("$$STRING GOES HERE\n")
+    sleep(4)
+        
+#+END_SRC
 ** Outline
 *** Step 1
 - Same old
@@ -84,3 +107,7 @@
 - Send and receive GPS coordinates
 *** Challenge
 - Treasure hunt the Pi game
+* Project 3 - Flight unit and HAB
+* Project 4 - Prepare for launch
+* Project 5 - Launch and chase
+* Project 6 - Post flight analysis
